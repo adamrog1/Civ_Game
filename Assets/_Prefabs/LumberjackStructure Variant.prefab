@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.48
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7074212481441020971, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
       propertyPath: m_Name
-      value: LumberjackStructure
+      value: LumberjackStructure Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}

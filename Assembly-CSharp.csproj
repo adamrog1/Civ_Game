@@ -69,6 +69,11 @@
     <Compile Include="Assets\_Scripts\UI\UIInfoPanel.cs" />
     <Compile Include="Assets\_Scripts\InfoProvider.cs" />
     <Compile Include="Assets\_Scripts\InfoManager.cs" />
+    <Compile Include="Assets\_Scripts\BuildSystem\UnitCreationManager.cs" />
+    <Compile Include="Assets\_Scripts\Town.cs" />
+    <Compile Include="Assets\_Scripts\Worker.cs" />
+    <Compile Include="Assets\_Scripts\Data\UnitDataSO.cs" />
+    <Compile Include="Assets\_Scripts\UnitData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

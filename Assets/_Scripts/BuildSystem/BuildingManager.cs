@@ -28,23 +28,29 @@ public class BuildingManager : MonoBehaviour, ITurnDependant
 
         if (selectedObject == null)
             return;
-
-        farmerUnit = selectedObject.GetComponent<Unit>();
-        if (farmerUnit != null && farmerUnit.CanStillMove())
+        Worker worker = selectedObject.GetComponent<Worker>();
+        if(worker != null)
         {
-            HandleUnitSelection();
+            HandleUnitSelection(worker);
         }
     }
 
     private void ResetBuildingSystem()
     {
+        if (farmerUnit != null)
+            farmerUnit.FinishedMoving.RemoveListener(ResetBuildingSystem);
         farmerUnit = null;
         unitBuildUI.ToggleVisibility(false);
     }
 
-    private void HandleUnitSelection()
+    private void HandleUnitSelection(Worker worker)
     {
-        unitBuildUI.ToggleVisibility(true);
+        farmerUnit = worker.GetComponent<Unit>();
+        if (farmerUnit != null && farmerUnit.CanStillMove())
+        {
+            unitBuildUI.ToggleVisibility(true);
+            farmerUnit.FinishedMoving.AddListener(ResetBuildingSystem);
+        }
     }
 
     public void BuildStructure(GameObject structurePrefab)
