@@ -19,8 +19,11 @@ public class SelectionManager : MonoBehaviour, ITurnDependant
             if (unit.CanStillMove() == false)
                 return;
         }
+
         flashFeedback = detectedColldier.GetComponent<FlashFeedback>();
-        flashFeedback.PlayFeedback();
+        if (flashFeedback != null)
+            flashFeedback.PlayFeedback();
+
     }
 
     private void DeselectOldObject()

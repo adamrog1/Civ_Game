@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3331307586183734311}
   - component: {fileID: 3331307586183734308}
   - component: {fileID: 7554156477860191199}
+  - component: {fileID: 4082037650806343323}
   m_Layer: 5
   m_Name: BuildingPanelFarmer
   m_TagString: Untagged
@@ -30,6 +31,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3331307586924800315}
   - {fileID: 8901478572250582970}
@@ -119,6 +121,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!114 &4082037650806343323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331307586183734307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820e92a04badb4e499b199403f79f800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildBtn: {fileID: 3331307586924800317}
+  OnBuildButtonClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3331307586924800312
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +167,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3331307587448334440}
   m_Father: {fileID: 3331307586183734306}
@@ -241,8 +260,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UiBuildButtonHandler, Assembly-CSharp
+      - m_Target: {fileID: 4082037650806343323}
+        m_TargetAssemblyTypeName: UIBuildButtonHandler, Assembly-CSharp
         m_MethodName: HandleButtonClick
         m_Mode: 1
         m_Arguments:
@@ -296,6 +315,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3331307586924800315}
   m_RootOrder: 0
@@ -359,7 +379,6 @@ GameObject:
   - component: {fileID: 5014412698253397326}
   - component: {fileID: 3176749589463845964}
   - component: {fileID: 8083087214502768579}
-  - component: {fileID: 3446138350180790606}
   m_Layer: 5
   m_Name: SelectionPanel
   m_TagString: Untagged
@@ -377,6 +396,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3331307587006902521}
   - {fileID: 7978977817595080657}
@@ -452,18 +472,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3446138350180790606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5228646454623782201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603da3191aa496e46b2c5b9c586066d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &964092392909322322
 PrefabInstance:
   m_ObjectHideFlags: 0

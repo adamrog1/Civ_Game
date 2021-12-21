@@ -49,4 +49,16 @@ public class Unit : MonoBehaviour, ITurnDependant
 
         transform.position += cardinalDirection;
     }
+
+    public void DestroyUnit()
+    {
+        FinishedMoving?.Invoke();
+        Destroy(gameObject);
+    }
+
+    public void FinishMovement()
+    {
+        this.currentMovementPoints = 0;
+        FinishedMoving?.Invoke();
+    }
 }

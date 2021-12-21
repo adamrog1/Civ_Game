@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8146686841361572180
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7074212481061150938, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8129655836590701982, guid: e9a6f53efd9dcbe4facdfd6b3fdd0870, type: 3}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020949, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074212481441020971, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
+      propertyPath: m_Name
+      value: LumberjackStructure
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fa70255d43b3e14b8fe3ae6eeab02b7, type: 3}
