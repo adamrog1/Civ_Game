@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6594653402033804681}
   - component: {fileID: -255250256969835182}
   - component: {fileID: 6587071222884856707}
+  - component: {fileID: 5219267061338712389}
   m_Layer: 7
   m_Name: FarmerUnit
   m_TagString: Character
@@ -215,3 +216,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7456959474222486228}
   darkColor: {r: 0.36078432, g: 0.36078432, b: 0.36078432, a: 1}
+--- !u!114 &5219267061338712389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456959474920984101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458ba5d0419d265498319c15dd792897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

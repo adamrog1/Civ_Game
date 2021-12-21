@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectionManager : MonoBehaviour
+public class SelectionManager : MonoBehaviour, ITurnDependant
 {
     FlashFeedback flashFeedback;
 
@@ -30,5 +30,10 @@ public class SelectionManager : MonoBehaviour
 
         flashFeedback.StopFeedback();
         flashFeedback = null;
+    }
+
+    public void WaitTurn()
+    {
+        DeselectOldObject();
     }
 }

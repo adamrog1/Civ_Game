@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, ITurnDependant
 {
     [SerializeField]
     private int maxMovementPoints = 30;
@@ -16,12 +16,22 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
+        ResetMovementPoints();
+    }
+
+    private void ResetMovementPoints()
+    {
         currentMovementPoints = maxMovementPoints;
     }
 
     public bool CanStillMove()
     {
         return currentMovementPoints > 0;
+    }
+
+    public void WaitTurn()
+    {
+        ResetMovementPoints();
     }
 
     public void HandleMovement(Vector3 cardinalDirection, int movementCost)
