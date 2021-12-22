@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -8,16 +9,36 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private Map map;
     private Unit selectedUnit;
+    private List<Vector2Int> movementRange;
+
+    [SerializeField]
+    private MovementRangeHighlight rangeHighlight;
 
     public void HandleSelection(GameObject detectedObject)
     {
+
         if (detectedObject == null)
         {
-            this.selectedUnit = null;
+            ResetCharacterMovement();
             return;
         }
-            
         this.selectedUnit = detectedObject.GetComponent<Unit>();
+        if (this.selectedUnit.CanStillMove())
+            PrepareMovementRange();
+        else
+            rangeHighlight.ClearHighlight();
+    }
+
+    private void PrepareMovementRange()
+    {
+        movementRange = map.GetMovementRange(this.selectedUnit.transform.position, this.selectedUnit.CurrentMovementPoints).Keys.ToList();
+        rangeHighlight.HighlightTiles(movementRange);
+    }
+
+    private void ResetCharacterMovement()
+    {
+        rangeHighlight.ClearHighlight();
+        this.selectedUnit = null;
     }
 
     public void HandleMovement(Vector3 endPosition)
@@ -28,15 +49,25 @@ public class CharacterMovement : MonoBehaviour
         if (this.selectedUnit.CanStillMove() == false)
             return;
         Vector2 direction = CalculateMovementDirection(endPosition);
-        if(map.CanIMoveTo((Vector2)this.selectedUnit.transform.position + direction))
+        Vector2Int unitTilePosition = Vector2Int.FloorToInt((Vector2)this.selectedUnit.transform.position + direction);
+
+        if(movementRange.Contains(unitTilePosition))
         {
-            this.selectedUnit.HandleMovement(direction, 10);
+            int cost = map.GetMovementCost(unitTilePosition);
+            this.selectedUnit.HandleMovement(direction, cost);
+            if (this.selectedUnit.CanStillMove())
+            {
+                PrepareMovementRange();
+            }
+            else
+            {
+                rangeHighlight.ClearHighlight();
+            }
         }
         else
         {
             Debug.Log("Cant move here");
         }
-
     }
 
     private Vector2 CalculateMovementDirection(Vector3 endPosition)
@@ -53,7 +84,6 @@ public class CharacterMovement : MonoBehaviour
             float sign = Mathf.Sign(direction.y);
             direction = Vector2.up * sign;
         }
-
         return direction;
     }
 }

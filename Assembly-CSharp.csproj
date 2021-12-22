@@ -53,27 +53,32 @@
     <UnityVersion>2021.2.4f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Scripts\Feedback\SelectionIndicatorFeedback.cs" />
     <Compile Include="Assets\_Scripts\Unit.cs" />
     <Compile Include="Assets\_Scripts\UI\UIBuildSelectionHandler.cs" />
     <Compile Include="Assets\_Scripts\TurnBasedSystem\PlayerTurnTaker.cs" />
+    <Compile Include="Assets\_Scripts\Worker.cs" />
     <Compile Include="Assets\_Scripts\SelectionManager.cs" />
     <Compile Include="Assets\_Scripts\Feedback\FlashFeedback.cs" />
+    <Compile Include="Assets\_Scripts\BuildSystem\UnitCreationManager.cs" />
+    <Compile Include="Assets\_Scripts\UnitData.cs" />
     <Compile Include="Assets\_Scripts\Map\Map.cs" />
     <Compile Include="Assets\_Scripts\Feedback\FinishedMovingFeedback.cs" />
     <Compile Include="Assets\_Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\_Scripts\TurnBasedSystem\TurnBasedManager.cs" />
     <Compile Include="Assets\_Scripts\BuildSystem\BuildingManager.cs" />
     <Compile Include="Assets\_Scripts\UI\UIBuildButtonHandler.cs" />
-    <Compile Include="Assets\_Scripts\HandlePlayerInput.cs" />
-    <Compile Include="Assets\_Scripts\Feedback\SelectionIndicatorFeedback.cs" />
-    <Compile Include="Assets\_Scripts\UI\UIInfoPanel.cs" />
     <Compile Include="Assets\_Scripts\InfoProvider.cs" />
-    <Compile Include="Assets\_Scripts\InfoManager.cs" />
-    <Compile Include="Assets\_Scripts\BuildSystem\UnitCreationManager.cs" />
-    <Compile Include="Assets\_Scripts\Town.cs" />
-    <Compile Include="Assets\_Scripts\Worker.cs" />
     <Compile Include="Assets\_Scripts\Data\UnitDataSO.cs" />
-    <Compile Include="Assets\_Scripts\UnitData.cs" />
+    <Compile Include="Assets\_Scripts\UI\UIInfoPanel.cs" />
+    <Compile Include="Assets\_Scripts\InfoManager.cs" />
+    <Compile Include="Assets\_Scripts\HandlePlayerInput.cs" />
+    <Compile Include="Assets\_Scripts\Town.cs" />
+    <Compile Include="Assets\_Scripts\Data\MapData\TerrainSO.cs" />
+    <Compile Include="Assets\_Scripts\Map\TerrainTypeReference.cs" />
+    <Compile Include="Assets\_Scripts\Map\MapGrid.cs" />
+    <Compile Include="Assets\_Scripts\Map\GraphSearch.cs" />
+    <Compile Include="Assets\_Scripts\Map\MovementRangeHighlight.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour, ITurnDependant
     public UnityEvent FinishedMoving;
     private UnitData unitData;
 
+    public int CurrentMovementPoints { get => currentMovementPoints; }
+
     private void Awake()
     {
         unitData = GetComponent<UnitData>();
