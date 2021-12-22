@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6cc659090538141b4ef8f1ff06621e, type: 3}
   m_Name: ObstacleTerrain
   m_EditorClassIdentifier: 
-  walkable: 1
-  movementCost: 20
+  walkable: 0
+  movementCost: 0

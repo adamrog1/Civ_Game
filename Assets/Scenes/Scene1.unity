@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 111947459}
   - component: {fileID: 111947461}
   - component: {fileID: 111947460}
+  - component: {fileID: 111947462}
   m_Layer: 0
   m_Name: forest
   m_TagString: Untagged
@@ -1247,6 +1248,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &111947462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111947458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0052356c79406488f4a81976ac956c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainData: {fileID: 11400000, guid: 85bc75c420f03a245a75ab3ee6f159f6, type: 2}
 --- !u!1001 &268974816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2400,6 +2414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657740457}
   - component: {fileID: 657740458}
+  - component: {fileID: 657740459}
   m_Layer: 0
   m_Name: CharacterMovement
   m_TagString: Untagged
@@ -2435,6 +2450,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 50777441}
+  rangeHighlight: {fileID: 657740459}
+--- !u!114 &657740459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657740456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d161ce3a47fb8104a9d7d28806441954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightTilemap: {fileID: 1981507622}
+  highlightTile: {fileID: 11400000, guid: c06e815f641e40b45909d51afab11164, type: 2}
 --- !u!114 &668819412 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5286545201493386244, guid: ab40d8200aa62064c8e874692995b14c, type: 3}
@@ -2459,11 +2489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7456959474920984091, guid: 76abf2c8ca9d7634f99df2bdd3e9451e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7456959474920984091, guid: 76abf2c8ca9d7634f99df2bdd3e9451e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7456959474920984091, guid: 76abf2c8ca9d7634f99df2bdd3e9451e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11717,6 +11747,7 @@ GameObject:
   - component: {fileID: 1460908270}
   - component: {fileID: 1460908272}
   - component: {fileID: 1460908271}
+  - component: {fileID: 1460908273}
   m_Layer: 0
   m_Name: islandEnd
   m_TagString: Untagged
@@ -18210,6 +18241,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1460908273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460908269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0052356c79406488f4a81976ac956c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainData: {fileID: 11400000, guid: 887be5c3ebf45464e918aba8d50fdac0, type: 2}
 --- !u!1 &1490899372
 GameObject:
   m_ObjectHideFlags: 0
@@ -41039,6 +41083,7 @@ GameObject:
   - component: {fileID: 1963560223}
   - component: {fileID: 1963560225}
   - component: {fileID: 1963560224}
+  - component: {fileID: 1963560226}
   m_Layer: 0
   m_Name: mountain
   m_TagString: Untagged
@@ -41522,6 +41567,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1963560226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963560222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0052356c79406488f4a81976ac956c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainData: {fileID: 11400000, guid: 94a2c466898ffec44b9d22bac08e4dbc, type: 2}
 --- !u!1 &1981507619
 GameObject:
   m_ObjectHideFlags: 0
@@ -41593,8 +41651,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1415467411
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -41614,15 +41672,39 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: -8.353977e-13
+      e01: 0
+      e02: -2.2778127e+29
+      e03: -2.2778127e+29
+      e10: 5.7e-43
+      e11: 0
+      e12: 5.66e-43
+      e13: 5.66e-43
+      e20: -8.2392937e+30
+      e21: 1e-45
+      e22: 0.0000000024775009
+      e23: 1.621499e+29
+      e30: 4.5905e-41
+      e31: 0
+      e32: 5.68e-43
+      e33: 5.7e-43
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: 4.2485e-41, g: 4.2485e-41, b: 4.2485e-41, a: 4.2485e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.3254902}
+  m_Origin: {x: -2, y: -2, z: 0}
+  m_Size: {x: 2, y: 2, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
