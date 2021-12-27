@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Unit : MonoBehaviour, ITurnDependant
 {
     private int currentMovementPoints;
     public UnityEvent FinishedMoving;
     private UnitData unitData;
-
+    private AudioSource stepSound;
     public int CurrentMovementPoints { get => currentMovementPoints; }
+
+    [SerializeField]
+    private LayerMask enemyDetectionLayer;
 
     private void Awake()
     {
+        stepSound = GetComponent<AudioSource>();
         unitData = GetComponent<UnitData>();
     }
 
@@ -46,13 +51,36 @@ public class Unit : MonoBehaviour, ITurnDependant
         }
 
         currentMovementPoints -= movementCost;
+        GameObject enemyUnity = CheckIfEnemyUnitInDirection(cardinalDirection);
+        if (enemyUnity == null)
+        {
+            transform.position += cardinalDirection;
+            stepSound.Play();
+        }
+        else {
+            PerformAttack(enemyUnity.GetComponent<Health>());
+        }
 
+      
         if (currentMovementPoints <= 0)
             FinishedMoving?.Invoke();
 
-        transform.position += cardinalDirection;
+        
     }
 
+
+    private void PerformAttack(Health health) {
+        health.GetHit(unitData.Data.attackStrength);
+       
+    }
+    private  GameObject CheckIfEnemyUnitInDirection(Vector3 cardinalDirection) {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, cardinalDirection, 1, enemyDetectionLayer);
+        if (hit.collider != null) {
+            return hit.collider.gameObject;
+        }
+        return null;
+    
+    }
     public void DestroyUnit()
     {
         FinishedMoving?.Invoke();
