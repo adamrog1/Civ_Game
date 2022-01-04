@@ -17,6 +17,9 @@ public class BuildingManager : MonoBehaviour, ITurnDependant
     [SerializeField]
     private InfoManager infoManager;
 
+    [SerializeField]
+    ResourceManager resourceManager;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -40,7 +43,7 @@ public class BuildingManager : MonoBehaviour, ITurnDependant
         if (farmerUnit != null)
             farmerUnit.FinishedMoving.RemoveListener(ResetBuildingSystem);
         farmerUnit = null;
-        unitBuildUI.ToggleVisibility(false);
+        unitBuildUI.ToggleVisibility(false,resourceManager);
     }
 
     private void HandleUnitSelection(Worker worker)
@@ -48,22 +51,27 @@ public class BuildingManager : MonoBehaviour, ITurnDependant
         farmerUnit = worker.GetComponent<Unit>();
         if (farmerUnit != null && farmerUnit.CanStillMove())
         {
-            unitBuildUI.ToggleVisibility(true);
+            unitBuildUI.ToggleVisibility(true,resourceManager);
             farmerUnit.FinishedMoving.AddListener(ResetBuildingSystem);
         }
     }
 
-    public void BuildStructure(GameObject structurePrefab)
+    public void BuildStructure(BuildDataSO buildData)
     {
         if (map.IsPositionInvalid(this.farmerUnit.transform.position))
             return;
 
+        resourceManager.SpendResource(buildData.buildCost);
+
         Debug.Log("Placing at " + this.farmerUnit.transform.position);
-        GameObject structure = Instantiate(structurePrefab, this.farmerUnit.transform.position, Quaternion.identity);
+        GameObject structure = Instantiate(buildData.prefab, this.farmerUnit.transform.position, Quaternion.identity);
+        ResourceProducer resourceProducer = structure.GetComponent<ResourceProducer>();
+        if (resourceProducer != null)
+            resourceProducer.Initialize(buildData);
         map.AddStructure(this.farmerUnit.transform.position, structure);
         audioSource.Play();
 
-        if (structurePrefab.name == "TownStructure")
+        if (buildData.prefab.name == "TownStructure")
         {
             this.farmerUnit.DestroyUnit();
             infoManager.HideInfoPanel();

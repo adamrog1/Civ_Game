@@ -6,6 +6,7 @@ public class SelectionManager : MonoBehaviour, ITurnDependant
 {
     FlashFeedback flashFeedback;
     SelectionIndicatorFeedback selectionFeedback;
+    AgentOutlineFeedback outlineFeedback;
 
     public void HandleSelection(GameObject detectedColldier)
     {
@@ -29,14 +30,23 @@ public class SelectionManager : MonoBehaviour, ITurnDependant
         if (flashFeedback != null)
             flashFeedback.PlayFeedback();
 
+        outlineFeedback = detectedColldier.GetComponent<AgentOutlineFeedback>();
+        if (outlineFeedback != null)
+            outlineFeedback.Select();
     }
 
-    private void DeselectOldObject()
+    public void DeselectOldObject()
     {
         if (flashFeedback != null)
         {
             flashFeedback.StopFeedback();
             flashFeedback = null;
+        }
+
+        if (outlineFeedback != null)
+        {
+            outlineFeedback.Deselect();
+            outlineFeedback = null;
         }
 
         if (selectionFeedback != null)

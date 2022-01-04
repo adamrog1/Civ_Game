@@ -48,9 +48,10 @@ public class CharacterMovement : MonoBehaviour
         return map.GetMovementRange(selectedUnit.transform.position, selectedUnit.CurrentMovementPoints);
     }
 
-    private void ResetCharacterMovement()
+    public void ResetCharacterMovement()
     {
-        rangeHighlight.ClearHighlight();
+        if(rangeHighlight !=null)
+            rangeHighlight.ClearHighlight();
         this.selectedUnit = null;
     }
 

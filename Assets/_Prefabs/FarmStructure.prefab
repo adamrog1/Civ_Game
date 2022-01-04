@@ -96,6 +96,10 @@ GameObject:
   - component: {fileID: 7074212481441020948}
   - component: {fileID: 1609167596992612402}
   - component: {fileID: 43541014684141300}
+  - component: {fileID: 8307104845810075048}
+  - component: {fileID: 766378710388339399}
+  - component: {fileID: 7877578778156914580}
+  - component: {fileID: -2516714667395945594}
   m_Layer: 7
   m_Name: FarmStructure
   m_TagString: Character
@@ -171,3 +175,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7074212481061150938}
+--- !u!114 &8307104845810075048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074212481441020971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8a38bb06c4c0d47af65411efff7928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 766378710388339399}
+        m_TargetAssemblyTypeName: DestroyUtil, Assembly-CSharp
+        m_MethodName: DestroyObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  health: 5
+  hitFX: {fileID: 3473061997551787214, guid: 25a23f20cfe153b49a536000a89a05c2, type: 3}
+--- !u!114 &766378710388339399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074212481441020971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9eb53c11338db4cb5903b2cc32b20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7877578778156914580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074212481441020971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49f9a49cba8a5479abe3454d05fef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2516714667395945594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074212481441020971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458ba5d0419d265498319c15dd792897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

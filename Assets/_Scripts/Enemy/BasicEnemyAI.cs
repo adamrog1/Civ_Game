@@ -12,17 +12,22 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
     private CharacterMovement characterMovement;
     [SerializeField]
     private FlashFeedback selectionFeedback;
+    [SerializeField]
+    private AgentOutlineFeedback outlineFeedback;
+
     private void Awake()
     {
         characterMovement = FindObjectOfType<CharacterMovement>();
         unit = GetComponent<Unit>();
         selectionFeedback = GetComponent<FlashFeedback>();
+        outlineFeedback = GetComponent<AgentOutlineFeedback>();
     }
 
     public void StartTurn()
     {
         Debug.Log("TAKES A TURN");
         selectionFeedback.PlayFeedback();
+        outlineFeedback.Select();
         Dictionary<Vector2Int, Vector2Int?> movementRange = characterMovement.GetMovementRangeFor(unit);
         List<Vector2Int> path = GetPathToRandomPositon(movementRange);
         Queue<Vector2Int> pathQueue = new Queue<Vector2Int>(path);
@@ -80,5 +85,6 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
     {
         TurnFinished?.Invoke();
         selectionFeedback.StopFeedback();
+        outlineFeedback.Deselect();
     }
 }
