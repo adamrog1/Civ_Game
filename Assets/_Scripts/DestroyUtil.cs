@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyUtil : MonoBehaviour
 {
+    // Do usuwania dowolnych gameobject
     public void DestroyObject()
     {
         Destroy(gameObject);

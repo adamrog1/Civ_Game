@@ -10,6 +10,7 @@ public class UnitCreationManager : MonoBehaviour, ITurnDependant
     private Town selectedTown = null;
     [SerializeField] private ResourceManager resourcemanager;
 
+    // Sprawdzamy czy klikniety obiekt to miasto
     public void HandleSelection(GameObject selectedObject)
     {
         ResetTownBuildUI();
@@ -24,16 +25,18 @@ public class UnitCreationManager : MonoBehaviour, ITurnDependant
         }
     }
 
+    // Jesli kliknieto miasto to wlaczamy UI
     private void HandleTown(Town selectedTown)
     {
         townUi.ToggleVisibility(true, resourcemanager);
     }
 
+    // Sprawdzamy czy mamy niezbedne surowce to stworzenia jednoski i dodajemy ja do produkcji
     public void CreateUnit(BuildDataSO unitData)
     {
+        // Jedno miasto moze produkowac tylko jedna jednostke na raz
         if (selectedTown.InProduction)
         {
-            Debug.Log("Already done");
             return;
         }
         resourcemanager.SpendResource(unitData.buildCost);
@@ -41,12 +44,14 @@ public class UnitCreationManager : MonoBehaviour, ITurnDependant
         ResetTownBuildUI();
     }
 
+    // Wylaczamy UI rekrutacji jednostek
     private void ResetTownBuildUI()
     {
         townUi.ToggleVisibility(false, resourcemanager);
         selectedTown = null;
     }
 
+    // W przypadku konca tury wylaczamy UI
     public void WaitTurn()
     {
         ResetTownBuildUI();

@@ -5,19 +5,30 @@ using UnityEngine;
 
 public class InfoManager : MonoBehaviour, ITurnDependant
 {
+    // Pobieramy informacje, ktory element canvasu jest naszym panelem
     [SerializeField]
     private UIInfoPanel infoPanel;
 
+    // Domyslnie nic nie jest klikniete wiec mozemy domyslnie wylaczyc panel
     private void Start()
     {
         HideInfoPanel();
     }
 
+    // Wylaczamy UI element
     public void HideInfoPanel()
     {
         infoPanel.ToggleVisibility(false);
     }
 
+    // Wlaczamy UI element
+    private void ShowInfoPanel(InfoProvider infoProvider)
+    {
+        infoPanel.ToggleVisibility(true);
+        infoPanel.SetData(infoProvider.Image, infoProvider.NameToDisplay);
+    }
+
+    // Wyswietlamy informacje o aktualnie kliknietym obiekcie
     public void HandleSelection(GameObject selectedObject)
     {
         HideInfoPanel();
@@ -33,12 +44,7 @@ public class InfoManager : MonoBehaviour, ITurnDependant
         ShowInfoPanel(infoProvider);
     }
 
-    private void ShowInfoPanel(InfoProvider infoProvider)
-    {
-        infoPanel.ToggleVisibility(true);
-        infoPanel.SetData(infoProvider.Image, infoProvider.NameToDisplay);
-    }
-
+    // Przy koncu tury rowniez wylaczamy panel
     public void WaitTurn()
     {
         HideInfoPanel();

@@ -11,11 +11,9 @@ public class TurnBasedManager : MonoBehaviour
 
     public void NextTurn()
     {
-        Debug.Log("Waiting...");
         OnBlockPlayerInput?.Invoke();
         SystemTurn();
         EnemiesTurn();
-        //PlayerTurn();
     }
 
     private void SystemTurn()

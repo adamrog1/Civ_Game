@@ -72,8 +72,7 @@ public class Unit : MonoBehaviour, ITurnDependant
 
 
     private void PerformAttack(Health health) {
-        health.GetHit(unitData.Data.attackStrength);
-       
+        health.GetHit(unitData.Data.attackStrength);       
     }
     private  GameObject CheckIfEnemyUnitInDirection(Vector3 cardinalDirection) {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, cardinalDirection, 1, enemyDetectionLayer);
@@ -83,12 +82,15 @@ public class Unit : MonoBehaviour, ITurnDependant
         return null;
     
     }
+
+    // Usuwanie jednostki
     public void DestroyUnit()
     {
         FinishedMoving?.Invoke();
         Destroy(gameObject);
     }
 
+    // Koniec ruchu wylacza jednostke i jej animacje
     public void FinishMovement()
     {
         this.currentMovementPoints = 0;

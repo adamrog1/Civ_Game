@@ -9,14 +9,18 @@ public class Map : MonoBehaviour
 {
     Dictionary<Vector3Int, GameObject> buildings = new Dictionary<Vector3Int, GameObject>();
 
+    // Dane potrzebne do rysowania mapy w scenie Unity
     [SerializeField]
     private Tilemap islandCollidersTilemap, forestTilemap, mountainsTilemap;
 
     private List<Vector2Int> islandTiles, forestTiles, mountainTiles, emptyTiles;
 
+    // I dane dla testowania, uzywane przez Gizmos
     [SerializeField]
     private bool showEmpty, showMountains, showForest;
 
+    // Tutaj zwracamy tylko pola dostepne w zasiegu danej jednostki, zeby nie liczyc wszystkich na mapie
+    // Uzywamy BFS opisanego w GraphSearch.cs
     public Dictionary<Vector2Int, Vector2Int?> GetMovementRange(Vector3 worldPosition, int currentMovementPoints)
     {
         Vector3Int cellWorldPosition = GetCellWorldPositionFor(worldPosition);
@@ -25,6 +29,7 @@ public class Map : MonoBehaviour
 
     private MapGrid mapGrid;
 
+    // Przy wlaczeniu gry pobieramy ze wszystkich warst siatki dane o kafelkach mapy
     private void Awake()
     {
         forestTiles = GetTilemapWorldPositionsFrom(forestTilemap);
@@ -39,6 +44,7 @@ public class Map : MonoBehaviour
         return mapGrid.GetMovementCost(cellWorldPosition);
     }
 
+    // Zapisujemy dane do siatki mapy na podstawie ulozonych kafelek w roznych warstwach
     private void PrepareMapGrid()
     {
         mapGrid = new MapGrid();
@@ -47,6 +53,7 @@ public class Map : MonoBehaviour
         mapGrid.AddToGrid(islandCollidersTilemap.GetComponent<TerrainTypeReference>().GetTerrainData(), emptyTiles);
     }
 
+    // Zwraca pozycje "wolnych" pol
     private List<Vector2Int> GetEmptyTiles(List<Vector2Int> islandTiles, List<Vector2Int> nonEmptyTiles)
     {
         HashSet<Vector2Int> emptyTilesHashset = new HashSet<Vector2Int>(islandTiles);
@@ -69,16 +76,19 @@ public class Map : MonoBehaviour
         return tempList;
     }
 
+    // Tutaj zwraca pozucje calego panelu
     private Vector3Int GetCellWorldPositionFor(Vector3 worldPosition)
     {
         return Vector3Int.CeilToInt(islandCollidersTilemap.CellToWorld(islandCollidersTilemap.WorldToCell(worldPosition)));
     }
 
+    // Funkcja zwraca vector z pozycja z mapy
     private Vector3Int GetWorldPositionFor(Vector2Int cellPosition)
     {
         return Vector3Int.CeilToInt(islandCollidersTilemap.CellToWorld((Vector3Int)cellPosition));
     }
 
+    // Na jednym polu moze byc tylko jedna budowla, latwo mozemy sprawdzic czy wskazana pozycja zawiera juz budowle
     public void AddStructure(Vector3 worldPosition, GameObject structure)
     {
         Vector3Int position = GetCellWorldPositionFor(worldPosition);
@@ -92,11 +102,13 @@ public class Map : MonoBehaviour
         buildings[position] = structure;
     }
 
+    // Sprawdzamy poprawnosc pozycji
     public bool IsPositionInvalid(Vector3 worldPosition)
     {
         return buildings.ContainsKey(GetCellWorldPositionFor(worldPosition));
     }
 
+    // Dla kazdej warstwy rysujemy kolka
     private void OnDrawGizmos()
     {
         if (Application.isPlaying == false)
@@ -106,6 +118,7 @@ public class Map : MonoBehaviour
         DrawGizomOf(mountainTiles, Color.red, showMountains);
     }
 
+    // Rysujemy kolka na niedostepnych polach (pomocne przy sprawdzaniu czy ruchy dostepne sa poprawne)
     private void DrawGizomOf(List<Vector2Int> tiles, Color color, bool isShowing)
     {
         if (isShowing)

@@ -7,8 +7,7 @@ public class ResourceManager : MonoBehaviour
 {
     UIResourcesManager resourceUI;
 
-    Dictionary<ResourceType, int> resourceDictionary
-        = new Dictionary<ResourceType, int>();
+    Dictionary<ResourceType, int> resourceDictionary = new Dictionary<ResourceType, int>();
 
     public List<ResourceValue> initialResources = new List<ResourceValue>();
 
@@ -39,8 +38,7 @@ public class ResourceManager : MonoBehaviour
         {
             if (initialResourceValue.resourceType == ResourceType.None)
                 throw new ArgumentException("Resource can't be None!");
-            resourceDictionary[initialResourceValue.resourceType]
-                = initialResourceValue.resourceAmount;
+            resourceDictionary[initialResourceValue.resourceType] = initialResourceValue.resourceAmount;
         }
     }
 
@@ -71,8 +69,7 @@ public class ResourceManager : MonoBehaviour
 
     public bool CheckResourceAvailability(ResourceValue resourceRecquired)
     {
-        return resourceDictionary[resourceRecquired.resourceType]
-            >= resourceRecquired.resourceAmount;
+        return resourceDictionary[resourceRecquired.resourceType] >= resourceRecquired.resourceAmount;
     }
 
     public void SpendResource(List<ResourceValue> buildCost)
@@ -93,9 +90,7 @@ public class ResourceManager : MonoBehaviour
     private void VerifyResourceAmount(ResourceType resourceType)
     {
         if (resourceDictionary[resourceType] < 0)
-            throw new
-                InvalidOperationException(
-                "Can't have resource less than 0 " + resourceType);
+            throw new InvalidOperationException("Can't have resource less than 0 " + resourceType);
     }
 }
 
