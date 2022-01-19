@@ -86,7 +86,23 @@ public class ResourceManager : MonoBehaviour
         VerifyResourceAmount(resourceType);
         UpdateUI(resourceType);
     }
+    public bool isThereEneoughResources(List<ResourceValue> buildCost) {
 
+        foreach (ResourceValue resourceValue in buildCost)
+        {
+            if (isThereEneoughResources(resourceValue.resourceType, resourceValue.resourceAmount) == false) { return false; }
+        }
+        return true;
+    }
+    public bool isThereEneoughResources(ResourceType resourceType, int resourceAmount) {
+        if (resourceDictionary[resourceType] < resourceAmount)
+        {
+            return false;
+        }
+        else
+            return true;
+    
+    }
     private void VerifyResourceAmount(ResourceType resourceType)
     {
         if (resourceDictionary[resourceType] < 0)

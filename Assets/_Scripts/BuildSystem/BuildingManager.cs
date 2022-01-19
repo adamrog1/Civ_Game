@@ -70,7 +70,9 @@ public class BuildingManager : MonoBehaviour, ITurnDependant
             return;
 
         // Pobieramy koszt budowy
-        resourceManager.SpendResource(buildData.buildCost);
+        if (resourceManager.isThereEneoughResources(buildData.buildCost)==false) { return; }
+        else
+            resourceManager.SpendResource(buildData.buildCost);
 
         // Tworzymy budynek zgodnie z zaznaczonymi danymi
         GameObject structure = Instantiate(buildData.prefab, this.workerUnit.transform.position, Quaternion.identity);

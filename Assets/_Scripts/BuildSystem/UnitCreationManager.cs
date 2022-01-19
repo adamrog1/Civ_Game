@@ -39,6 +39,7 @@ public class UnitCreationManager : MonoBehaviour, ITurnDependant
         {
             return;
         }
+        if (resourcemanager.isThereEneoughResources(unitData.buildCost) == false) { return; }
         resourcemanager.SpendResource(unitData.buildCost);
         selectedTown.AddUnitToProduction(unitData.prefab);
         ResetTownBuildUI();
