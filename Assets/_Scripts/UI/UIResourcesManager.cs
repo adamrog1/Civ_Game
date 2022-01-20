@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class UIResourcesManager : MonoBehaviour
 {
-    Dictionary<ResourceType, UIResource> resourceUiDictionary
-        = new Dictionary<ResourceType, UIResource>();
+    Dictionary<ResourceType, UIResource> resourceUiDictionary = new Dictionary<ResourceType, UIResource>();
 
     private void Awake()
     {
