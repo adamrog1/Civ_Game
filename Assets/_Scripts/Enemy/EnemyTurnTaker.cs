@@ -9,6 +9,7 @@ public class EnemyTurnTaker : MonoBehaviour
 
     private IEnemyAI enemyAI;
 
+    // Funckje przelaczaja miedzy aktywna tura przecinika i koncem tury
     private void Start()
     {
         enemyAI = GetComponent<IEnemyAI>();

@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+    // Pobiramy dane o dostepnych typach surowcow i ich ilosci, oraz o panelu w ktorym sa wyswietlane 
     UIResourcesManager resourceUI;
 
     Dictionary<ResourceType, int> resourceDictionary = new Dictionary<ResourceType, int>();
 
     public List<ResourceValue> initialResources = new List<ResourceValue>();
 
+    // Przy starcie zapisujemy te dane do zmiennych i wyswietlamy je w UI
     private void Start()
     {
         resourceUI = FindObjectOfType<UIResourcesManager>();
@@ -19,6 +21,7 @@ public class ResourceManager : MonoBehaviour
         UpdateUI();
     }
 
+    // Aktualizyjemy UI przy zmianie stanu surowcow
     private void UpdateUI()
     {
         foreach (ResourceType resourceType in resourceDictionary.Keys)
@@ -32,6 +35,7 @@ public class ResourceManager : MonoBehaviour
         resourceUI.SetResource(resourceType, resourceDictionary[resourceType]);
     }
 
+    // Pobieramy dane o wybranym surowcu
     private void SetInitialResourceValues()
     {
         foreach (ResourceValue initialResourceValue in initialResources)
@@ -42,6 +46,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    // Dodajemy surewiec do slownika
     public void AddResource(List<ResourceValue> producedResources)
     {
         foreach (ResourceValue resourseVal in producedResources)
@@ -50,6 +55,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    // Odswiezamy UI
     public void AddResourse(ResourceType resourceType, int resourceAmount)
     {
         resourceDictionary[resourceType] += resourceAmount;
@@ -67,11 +73,13 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    // Sprawdzamy ilosc surowca na podstawie podanego typu 
     public bool CheckResourceAvailability(ResourceValue resourceRecquired)
     {
         return resourceDictionary[resourceRecquired.resourceType] >= resourceRecquired.resourceAmount;
     }
 
+    // Usuwamy okreslona ilosc surowca se slownika
     public void SpendResource(List<ResourceValue> buildCost)
     {
         foreach (ResourceValue resourceValue in buildCost)
@@ -80,12 +88,15 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    // Oswiezamy UI
     public void SpendResource(ResourceType resourceType, int resourceAmount)
     {
         resourceDictionary[resourceType] -= resourceAmount;
         VerifyResourceAmount(resourceType);
         UpdateUI(resourceType);
     }
+
+    // Sprawdzamy czy podana wartosc nie przekroczy dostepnych surowcow 
     public bool isThereEneoughResources(List<ResourceValue> buildCost) {
 
         foreach (ResourceValue resourceValue in buildCost)

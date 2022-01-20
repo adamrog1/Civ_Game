@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class Unit : MonoBehaviour, ITurnDependant
 {
+    // Pobieramy informacje o zasiegu ruchu, danych jednostki i pliku audio
     private int currentMovementPoints;
     public UnityEvent FinishedMoving;
     private UnitData unitData;
@@ -23,26 +24,31 @@ public class Unit : MonoBehaviour, ITurnDependant
         unitData = GetComponent<UnitData>();
     }
 
+    // Na poczatku ustalany zasieg ruchu na podstawie danych w panelu Unity
     void Start()
     {
         ResetMovementPoints();
     }
 
+    // Update danych
     private void ResetMovementPoints()
     {
         currentMovementPoints = unitData.Data.movementRange;
     }
 
+    // Sprawdamy czy zostaly punkty ruchu
     public bool CanStillMove()
     {
         return currentMovementPoints > 0;
     }
 
+    // Koniec tury resetuje punkty ruchu
     public void WaitTurn()
     {
         ResetMovementPoints();
     }
 
+    // Jesli wykonywany jest ruch sprawdaamy czy jednostka ma wystarczajaco punktow ruchu
     public void HandleMovement(Vector3 cardinalDirection, int movementCost)
     {
         if(currentMovementPoints - movementCost < 0)
@@ -51,6 +57,8 @@ public class Unit : MonoBehaviour, ITurnDependant
             return;
         }
 
+        // Wykonujemy ruch jesli wszsytkie warunki sa spelnione
+        // Odejmujemy wartosc wykonanego ruchu od punktow jednstki
         currentMovementPoints -= movementCost;
         GameObject enemyUnity = CheckIfEnemyUnitInDirection(cardinalDirection);
         if (enemyUnity == null)
@@ -59,6 +67,7 @@ public class Unit : MonoBehaviour, ITurnDependant
             stepSound.Play();
             OnMove?.Invoke();
         }
+        // Jesli ruch byl wykonany na pole z becnym wrogiem to nie wykonuejmy go tylko zadajemy obrazenia wrogowi
         else {
             PerformAttack(enemyUnity.GetComponent<Health>());
         }
@@ -70,10 +79,12 @@ public class Unit : MonoBehaviour, ITurnDependant
         
     }
 
-
+    // Odejmyjemy punkty zycia wrogowi
     private void PerformAttack(Health health) {
         health.GetHit(unitData.Data.attackStrength);       
     }
+
+    // Sprawdzamy czy na podanym polu znajduje sie jednostka wroga
     private  GameObject CheckIfEnemyUnitInDirection(Vector3 cardinalDirection) {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, cardinalDirection, 1, enemyDetectionLayer);
         if (hit.collider != null) {

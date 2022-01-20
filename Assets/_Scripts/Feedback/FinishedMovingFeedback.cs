@@ -15,6 +15,7 @@ public class FinishedMovingFeedback : MonoBehaviour, ITurnDependant
         originalColor = spriteRenderer.color;
     }
 
+    // Funckje przelaczaja miedzy jednostka podstwielnoa i domyslna
     public void PlayFeedback()
     {
         spriteRenderer.color = darkColor;

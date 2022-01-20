@@ -5,11 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class MovementRangeHighlight : MonoBehaviour
 {
+    // Potrzebujemy danych o tilemapie na ktorej maja zostac podswietlone kafelki
     [SerializeField]
     private Tilemap highlightTilemap;
     [SerializeField]
     private TileBase highlightTile;
 
+    // Funckja przelacza wybrane kafelki na podswietlona
     public void HighlightTiles(IEnumerable<Vector2Int> cellPositions)
     {
         ClearHighlight();
@@ -19,6 +21,7 @@ public class MovementRangeHighlight : MonoBehaviour
         }
     }
 
+    // Usuwamy podswietlenie ze wszystkich kafelek (np przy koncu tury)
     public void ClearHighlight()
     {
         highlightTilemap.ClearAllTiles();

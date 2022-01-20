@@ -12,6 +12,7 @@ public class UIResourcesManager : MonoBehaviour
         PrepareResourceDictionary();
     }
 
+    // Tworzymy slownik z surowcami na podstawie tego co przydzielone w panelu
     private void PrepareResourceDictionary()
     {
         foreach (UIResource uiResourceReference
@@ -27,6 +28,7 @@ public class UIResourcesManager : MonoBehaviour
         }
     }
 
+    // I dodajemy wartosci tych surowcow
     public void SetResource(ResourceType resourceType, int val)
     {
         try

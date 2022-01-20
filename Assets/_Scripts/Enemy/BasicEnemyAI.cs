@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BasicEnemyAI : MonoBehaviour, IEnemyAI
 {
+    // Pobieramy informacje na temat stanu tury, zasiegu jednostki i jej animacji
     public event Action TurnFinished;
 
     private Unit unit;
@@ -23,9 +24,9 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
         outlineFeedback = GetComponent<AgentOutlineFeedback>();
     }
 
+    // Zacznamy ruch od animacji, policzenia zasiegu i wygenerowania losowej sciezki dla jednostki
     public void StartTurn()
     {
-        Debug.Log("TAKES A TURN");
         selectionFeedback.PlayFeedback();
         outlineFeedback.Select();
         Dictionary<Vector2Int, Vector2Int?> movementRange = characterMovement.GetMovementRangeFor(unit);
@@ -34,6 +35,7 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
         StartCoroutine(MoveUnit(pathQueue));
     }
 
+    // Losujemy sciezke ruchu na podstawie dostepnych puntow ruchu
     private List<Vector2Int> GetPathToRandomPositon(Dictionary<Vector2Int, Vector2Int?> movementRange)
     {
         List<Vector2Int> possibleDestination = movementRange.Keys.ToList();
@@ -46,6 +48,7 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
      //   return new List<Vector2Int> { movementRange.Keys.ToList()[2] };
     }
 
+    // Obliczamy sciezke potrzebna do osiagniecia zadanego punktu na mapie
     private List<Vector2Int> GetPathTo(Vector2Int destination, Dictionary<Vector2Int, Vector2Int?> movementRange)
     {
         List<Vector2Int> path = new List<Vector2Int>();
@@ -58,6 +61,7 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
         return path.Skip(1).ToList();
     }
 
+    // Wykonujemy ruchy zgodnie z ustalona sciezka
     private IEnumerator MoveUnit(Queue<Vector2Int> path)
     {
         yield return new WaitForSeconds(0.5F);
@@ -67,6 +71,7 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
             yield break;
         }
         Vector2Int pos = path.Dequeue();
+        // Przy kazdym ruchu pobieramy kierunek posuniecia ze sciezki
         Vector3Int direction = Vector3Int.RoundToInt(new Vector3(pos.x + 0.5F, pos.y + 0.5F, 0) - transform.position);
         unit.HandleMovement(direction, 0);
         Debug.Log("Finished");
@@ -81,6 +86,7 @@ public class BasicEnemyAI : MonoBehaviour, IEnemyAI
         }
     }
 
+    // Przy zakonczeniu ruchu wylacza animacje i przelacza ture
     private void FinishMovement()
     {
         TurnFinished?.Invoke();

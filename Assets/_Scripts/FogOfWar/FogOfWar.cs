@@ -12,6 +12,7 @@ public class FogOfWar : MonoBehaviour
     [SerializeField]
     private TileBase fowTile;
 
+    // Przygotowanie tilemapy dla fow na podstawie wartosci ustalonych w panelu
     void Awake()
     {
         fogOfWarTilemap.size = seaTilemap.size;
@@ -27,6 +28,7 @@ public class FogOfWar : MonoBehaviour
 
     }
 
+    // Usuwanie fow w wyznaczonych przez jednostke miejscach
     public void ClearFOW(List<Vector2> positionsToClear)
     {
         foreach (Vector2 position in positionsToClear)

@@ -8,6 +8,9 @@ using UnityEngine.EventSystems;
 
 public class HandlePlayerInput : MonoBehaviour
 {
+    // Potrzebujemy danych o polozeniu kursora i warstwy z gameobjectami
+    // Ustalamy treshold dla ktorego bedzie wykonywany ruch 
+    // Potrzebujemy tez eventow zwiaanych z obsluga myszy
     public Camera currentCamera;
     public LayerMask layerMask;
     private Collider2D[] selectedObjects = new Collider2D[0];
@@ -18,6 +21,7 @@ public class HandlePlayerInput : MonoBehaviour
     public UnityEvent<GameObject> OnHandleMouseClick;
     public UnityEvent<Vector3> OnHandleMouseFinishDragging;
 
+    // Funkcja wywolywana z poziomu panelu Unity przy kazdej akcji myszka
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
@@ -41,6 +45,7 @@ public class HandlePlayerInput : MonoBehaviour
         }
     }
 
+    // Wybieramy gameobject z tych dostepnych na danym polu
     private void PerformSelection()
     {
         Collider2D collider = HandleMultipleObjectSelection(startPosition);
@@ -50,6 +55,7 @@ public class HandlePlayerInput : MonoBehaviour
             Debug.Log($"Selected {selectedGameObject.name}");
     }
 
+    // Jesli sa dwa obiekty to przelaczamy sie miedy nimi
     private Collider2D HandleMultipleObjectSelection(Vector3 clickPosition)
     {
         Collider2D[] tempSelectedObjects = Physics2D.OverlapPointAll(clickPosition, layerMask);
@@ -75,15 +81,18 @@ public class HandlePlayerInput : MonoBehaviour
         return selectedCollider;
     }
 
+    // Przelaczanie polega na wybraniu innego obiektu niz aktualny z danego pola
     private bool CheckTheSameSelection(Collider2D[] tempSelectedObjects)
     {
         if (selectedObjects == null || selectedObjects.Length == 0) return false;
         return (tempSelectedObjects.Length == selectedObjects.Length) && tempSelectedObjects.Intersect(selectedObjects).Count() == selectedObjects.Length;
     }
 
+    // Puszczenie przycisku triggeruje akcje wybory obiektu
     private void HandleMouseUp()
     {
         Vector3 endPosition = GetMousePosition();
+        // Tylko jesli kursor ruszyl sie o wiecej niz pol pola
         if(Vector2.Distance(startPosition, endPosition) > threshold)
         {
             OnHandleMouseFinishDragging?.Invoke(endPosition);
@@ -96,6 +105,7 @@ public class HandlePlayerInput : MonoBehaviour
         }
     }
 
+    // Obliczamy pozycje kursora na mapie
     private Vector3 GetMousePosition()
     {
         Vector3 mouseInput = currentCamera.ScreenToWorldPoint(Input.mousePosition);

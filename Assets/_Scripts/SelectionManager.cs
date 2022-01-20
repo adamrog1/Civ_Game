@@ -8,6 +8,7 @@ public class SelectionManager : MonoBehaviour, ITurnDependant
     SelectionIndicatorFeedback selectionFeedback;
     AgentOutlineFeedback outlineFeedback;
 
+    // Dla wybranego obiektu wlaczamy animacje i outline
     public void HandleSelection(GameObject detectedColldier)
     {
         DeselectOldObject();
@@ -35,6 +36,7 @@ public class SelectionManager : MonoBehaviour, ITurnDependant
             outlineFeedback.Select();
     }
 
+    // I wylaczamy animacje i outline
     public void DeselectOldObject()
     {
         if (flashFeedback != null)
@@ -56,6 +58,7 @@ public class SelectionManager : MonoBehaviour, ITurnDependant
         }
     }
 
+    // Konczenie tury rowniez wylacza animacje
     public void WaitTurn()
     {
         DeselectOldObject();

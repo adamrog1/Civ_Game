@@ -7,7 +7,7 @@ public class StartGame : MonoBehaviour
 {
     private AssetBundle myLoadedAssetBundle;
     private string[] scenePaths;
-
+    // Skrypt nie uzywany po budownie main menu
     public void LoadScene()     
     {
         SceneManager.LoadScene("Scene1");

@@ -6,16 +6,18 @@ using UnityEngine.Events;
 
 public class TurnBasedManager : MonoBehaviour
 {
+    // Pobieramy informacje o ruchach wrogich jednostek 
     Queue<EnemyTurnTaker> enemyQueue = new Queue<EnemyTurnTaker>();
     public UnityEvent OnBlockPlayerInput, OnUnblockPlayerInput;
 
+    // Funckja blokuje interakcje gracza z interfejsem i wykonuje ruch przeciwnika
     public void NextTurn()
     {
         OnBlockPlayerInput?.Invoke();
         SystemTurn();
         EnemiesTurn();
     }
-
+    // Przelaczanie miedzy turami
     private void SystemTurn()
     {
         foreach (SystemTurnTaker turnTaker in FindObjectsOfType<SystemTurnTaker>())
@@ -25,12 +27,14 @@ public class TurnBasedManager : MonoBehaviour
         }
     }
 
+    // Wykonywanie ruchow przeciwnika
     private void EnemiesTurn()
     {
         enemyQueue = new Queue<EnemyTurnTaker>(FindObjectsOfType<EnemyTurnTaker>());
         StartCoroutine(EnemyTurnTaker(enemyQueue));
     }
 
+    // Konczenie tury przeciwnika i wznawianie tury gracza
     private IEnumerator EnemyTurnTaker(Queue<EnemyTurnTaker> enemyQueue)
     {
         while (enemyQueue.Count > 0) {
@@ -43,6 +47,7 @@ public class TurnBasedManager : MonoBehaviour
         PlayerTurn();
     }
 
+    // Rozpoczynamy ture gracza, oblokowujemy wszystkie elementy UI i interakcje z nimi
     private void PlayerTurn()
     {
         foreach (PlayerTurnTaker turnTaker in FindObjectsOfType<PlayerTurnTaker>())
@@ -55,6 +60,7 @@ public class TurnBasedManager : MonoBehaviour
     }
 }
 
+// Interfejs uzywany w innych klasach m.in. do blokowania elementow interfejsu
 public interface ITurnDependant
 {
     void WaitTurn();

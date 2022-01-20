@@ -8,6 +8,7 @@ public class FOWRemover : MonoBehaviour
     public int range = 4;
     private Unit unit;
 
+    // Pobieramy dane o jednostce
     void Start()
     {
         unit = GetComponent<Unit>();
@@ -16,12 +17,14 @@ public class FOWRemover : MonoBehaviour
         unit.OnMove += ClearPositions;
     }
 
+    // Odslaniamy kafelki
     public void ClearPositions()
     {
         List<Vector2> positionsToClear = CalculatePositionsAround();
         fow.ClearFOW(positionsToClear);
     }
 
+    // Funkcja okresla ktore pola maja zostac odkryte na podstawie polozenia jednostki i zasiegu pola widzenia
     private List<Vector2> CalculatePositionsAround()
     {
         List<Vector2> positions = new List<Vector2>();

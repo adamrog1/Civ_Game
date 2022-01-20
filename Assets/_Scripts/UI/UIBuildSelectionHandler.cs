@@ -6,6 +6,7 @@ using System;
 
 public class UIBuildSelectionHandler : MonoBehaviour, IPointerClickHandler
 {
+    // Pobieramy informacje o tym co mozemy budowac, kosztach i elemencie UI
     [SerializeField]
     private BuildDataSO buildData;
 
@@ -21,6 +22,7 @@ public class UIBuildSelectionHandler : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private bool interactable = false;
 
+    // Pobieramy te wartosci przy uruchomieniu
     private void Awake()
     {
         buttonHandler = GetComponentInParent<UIBuildButtonHandler>();
@@ -28,6 +30,7 @@ public class UIBuildSelectionHandler : MonoBehaviour, IPointerClickHandler
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    // Tylko dostepne przyciski mogabyc nacisniete
     public void OnPointerClick(PointerEventData eventData)
     {
         if(interactable == false)
@@ -39,6 +42,7 @@ public class UIBuildSelectionHandler : MonoBehaviour, IPointerClickHandler
         uiHighlight.ToggleHighlight(true);
     }
 
+    // Wlaczamy highlight aktywnych przyciskow
     public void ToggleActive(bool val)
     {
         this.interactable = val;

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    // Pobieramy dane o wybranej jednostce, jej pozycji i zasiegu ruchu
     [SerializeField]
     private Map map;
     private Unit selectedUnit;
@@ -14,9 +15,10 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private MovementRangeHighlight rangeHighlight;
 
+    // Jesli wybrany obiekt to jednstka i ma ona jeszcze dostepne ruchy to mozemy wyswietlic highlight
     public void HandleSelection(GameObject detectedObject)
     {
-
+        // Pomijamy naciesniecie budynku
         if (detectedObject == null)
         {
             ResetCharacterMovement();
@@ -37,17 +39,20 @@ public class CharacterMovement : MonoBehaviour
             rangeHighlight.ClearHighlight();
     }
 
+    // Obliczamy zasieg ruchu danej jednostki i wyswietlamy go
     private void PrepareMovementRange()
     {
         movementRange = GetMovementRangeFor(this.selectedUnit).Keys.ToList();
         rangeHighlight.HighlightTiles(movementRange);
     }
 
+    // Skrypt mapy oblicza zasieg ruchu na podstawie pozycji i otoczenia jednostki
     public Dictionary<Vector2Int, Vector2Int?> GetMovementRangeFor(Unit selectedUnit)
     {
         return map.GetMovementRange(selectedUnit.transform.position, selectedUnit.CurrentMovementPoints);
     }
 
+    // Koniec ruchu wylacza highlight
     public void ResetCharacterMovement()
     {
         if(rangeHighlight !=null)
@@ -55,8 +60,10 @@ public class CharacterMovement : MonoBehaviour
         this.selectedUnit = null;
     }
 
+    // Wykonujemy ruch
     public void HandleMovement(Vector3 endPosition)
     {
+        // Tylko jesli wybrany obiekt to jednostka i ma on jeszcze dostepny ruch
         if (this.selectedUnit == null)
             return;
 
@@ -65,6 +72,7 @@ public class CharacterMovement : MonoBehaviour
         Vector2 direction = CalculateMovementDirection(endPosition);
         Vector2Int unitTilePosition = Vector2Int.FloorToInt((Vector2)this.selectedUnit.transform.position + direction);
 
+        // Jesli wybrana kalefka zawiera sie w tych dotsepnych dla danej jednostki to mozemy wykonac ruch
         if(movementRange.Contains(unitTilePosition))
         {
             int cost = map.GetMovementCost(unitTilePosition);
@@ -84,6 +92,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    // Obliczamy kierynek ruchu na podstawie aktualnego poleozenia jednostki i miejsca kursora na ekranie
     private Vector2 CalculateMovementDirection(Vector3 endPosition)
     {
         Vector2 direction = (endPosition - this.selectedUnit.transform.position);
